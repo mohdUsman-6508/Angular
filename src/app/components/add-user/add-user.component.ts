@@ -23,7 +23,6 @@ export class AddUserComponent {
   updateUser(user: User, email: string) {
     this.userService.updateUser(user, email).subscribe((response) => {
       alert('User updated successfully!');
-      console.log(response);
     });
   }
 }

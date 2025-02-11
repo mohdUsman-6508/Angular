@@ -1,6 +1,4 @@
-<h2>Login</h2>
-
-<form (ngSubmit)="login()" #loginFrom="ngForm">
+<!-- <form (ngSubmit)="login()" #loginFrom="ngForm">
   <label for="email">Email: </label>
   <input type="email" [(ngModel)]="email" name="email" />
   <br />
@@ -8,5 +6,23 @@
   <label for="password">Password: </label>
   <input type="password" [(ngModel)]="password" name="password" />
   <br />
+
   <button type="submit">Login</button>
+  <br />
+</form> -->
+
+<form (ngSubmit)="login()" #loginFrom="ngForm">
+  <mat-card class="login-form">
+    <mat-card-title class="login-title"> Login </mat-card-title>
+    <mat-form-field>
+      <mat-label>Email:</mat-label>
+      <input matInput type="email" [(ngModel)]="email" name="email" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password:</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" />
+    </mat-form-field>
+    <button class="login-btn" mat-raised-button type="submit">Login</button>
+  </mat-card>
 </form>

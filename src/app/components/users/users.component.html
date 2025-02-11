@@ -1,4 +1,4 @@
-<h2>User List</h2>
+<!-- <h2>User List</h2>
 <ul>
   <li *ngFor="let user of users">
     Name: {{ user.name }}, Email:{{ user.email }}
@@ -6,3 +6,29 @@
   </li>
   <br />
 </ul>
+<br /> -->
+
+<div class="container-fluid user">
+  <div *ngFor="let user of users">
+    <div class="card" style="width: 18rem; padding: 2rem">
+      <img
+        src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">
+          {{ user.email }}
+        </p>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteUser(user.email)"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

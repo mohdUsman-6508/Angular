@@ -1,4 +1,5 @@
-<form (ngSubmit)="addUser()" #userForm="ngForm">
+<!-- <form (ngSubmit)="addUser()" #userForm="ngForm">
+
   <label for="name"> Name: </label>
   <input type="text" name="name" [(ngModel)]="user.name" required />
   <br />
@@ -17,4 +18,44 @@
   <button type="submit">Add User</button>
   <br />
   <button (click)="updateUser(user, user.email)">Update User</button>
+</form>
+
+<br />
+<app-logout></app-logout> -->
+<form (ngSubmit)="addUser()" #userForm="ngForm">
+  <mat-card class="user-form">
+    <mat-card-title class="user-title">Add/Update user</mat-card-title>
+    <mat-form-field>
+      <mat-label> Name </mat-label>
+      <input matInput type="text" name="name" [(ngModel)]="user.name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="user.email" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password </mat-label>
+      <input
+        matInput
+        type="password"
+        name="password"
+        [(ngModel)]="user.password"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Role </mat-label>
+      <input matInput type="text" name="role" [(ngModel)]="user.role" />
+    </mat-form-field>
+
+    <button class="btn" mat-raised-button type="submit">Add User</button>
+    <button
+      class="btn"
+      mat-raised-button
+      (click)="updateUser(user, user.email)"
+    >
+      Update User
+    </button>
+  </mat-card>
 </form>
