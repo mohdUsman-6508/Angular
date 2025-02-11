@@ -20,4 +20,9 @@ export class UsersComponent {
   loadUsers() {
     this.userService.getUsers().subscribe((data) => (this.users = data));
   }
+
+  deleteUser(email: string) {
+    this.userService.deleteUser(email);
+    this.users = this.users.filter((user) => user.email !== email);
+  }
 }

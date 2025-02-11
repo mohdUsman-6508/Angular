@@ -2,11 +2,19 @@
   <label for="name"> Name: </label>
   <input type="text" name="name" [(ngModel)]="user.name" required />
   <br />
-  <label for="email">Email:</label>
+  <label for="email">Email: </label>
   <input type="email" name="email" [(ngModel)]="user.email" required />
   <br />
-  <button type="submit">Add User</button>
-</form>
 
-<p>{{ user.name }}</p>
-<p>{{ user.email }}</p>
+  <label for="password">Password: </label>
+  <input type="password" name="password" [(ngModel)]="user.password" />
+  <br />
+
+  <label for="role">Role: </label>
+  <input type="text" name="role" [(ngModel)]="user.role" />
+  <br />
+
+  <button type="submit">Add User</button>
+  <br />
+  <button (click)="updateUser(user, user.email)">Update User</button>
+</form>

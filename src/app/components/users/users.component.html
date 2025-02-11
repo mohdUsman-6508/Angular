@@ -2,6 +2,7 @@
 <ul>
   <li *ngFor="let user of users">
     Name: {{ user.name }}, Email:{{ user.email }}
+    <button (click)="deleteUser(user.email)">Delete</button>
   </li>
   <br />
 </ul>

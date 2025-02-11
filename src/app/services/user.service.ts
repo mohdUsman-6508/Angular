@@ -9,14 +9,27 @@ import { Observable } from 'rxjs';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  private apiUrlGet = 'http://localhost:8080/api/user/get-users';
-  private apiUrlAdd = 'http://localhost:8080/api/user/add-user';
+  private baseUrl = 'http://localhost:8080/api/user';
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrlGet);
+    let apiUrlGet = `${this.baseUrl}/get-users`;
+    return this.http.get<User[]>(apiUrlGet);
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.apiUrlAdd, user);
+    let apiUrlAdd = `${this.baseUrl}/add-user`;
+    return this.http.post<User>(apiUrlAdd, user);
+  }
+
+  deleteUser(email: string) {
+    let apiUrlDelete = `${this.baseUrl}/delete-user/${email}`;
+    this.http.delete(apiUrlDelete).subscribe((response) => {
+      alert('User deleted!');
+    });
+  }
+
+  updateUser(user: User, email: string) {
+    let apiUrlUpdate = `${this.baseUrl}/update-user/${email}`;
+    return this.http.patch(apiUrlUpdate, user);
   }
 }
