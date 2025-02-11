@@ -12,7 +12,6 @@ const routes: Routes = [
   {
     path: 'add-update-user',
     component: AddUserComponent,
-    canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent },
 ];
