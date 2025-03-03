@@ -21,6 +21,10 @@ export class TaskService {
 
   deleteTask(taskId: string) {
     let deleteTaskUrl = `${this.baseUrl}${taskId}`;
-    return this.http.delete(deleteTaskUrl).subscribe();
+    return this.http.delete(deleteTaskUrl);
+  }
+
+  updateTask(task: Task, taskId: string) {
+    return this.http.put(`${this.baseUrl}${taskId}`, task);
   }
 }

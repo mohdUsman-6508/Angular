@@ -48,12 +48,13 @@ import { TaskCardComponent } from '../task-card/task-card.component';
       class="flex flex-col shadow-md p-6 w-1/2 mx-auto mt-8 items-center justify-between gap-1"
     >
       <h1 class="text-xl ">My tasks</h1>
-      @for(task of tasks();track task.id){
+      @if(tasks()!=null){ @for(task of tasks();track task.id){
       <app-task-card
         class="bg-slate-100 shadow-md p-3 w-full mx-auto mt-8 items-center justify-between gap-2"
         [taskItem]="task"
+        (itemDeleted)="deleteTask($event)"
       />
-      }
+      }}
     </div>
   `,
   styles: `
@@ -81,7 +82,13 @@ export class TaskComponent {
   addTask() {
     const userId = this.route.snapshot.paramMap.get('id');
     this.taskService.addTask(this.newTask(), userId || '').subscribe((t) => {
-      this.ngOnInit();
+      this.tasks().push(t);
     });
+  }
+
+  deleteTask(taskId: string) {
+    this.tasks.set(
+      this.tasks().filter((task) => task.id?.toString() !== taskId)
+    );
   }
 }
