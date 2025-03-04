@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
   template: `
     <div class="p-4 bg-slate-50 shadow-md flex justify-between">
-      <p class="text-xl font-bold" routerLink="login">Lineup</p>
+      <p class="text-xl font-bold" (click)="goToHome()">Lineup</p>
     </div>
     <router-outlet />
   `,
@@ -14,4 +14,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'lineup';
+
+  router = inject(Router);
+  goToHome() {
+    this.router.navigate(['/']);
+  }
 }

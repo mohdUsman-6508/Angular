@@ -8,10 +8,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     component: UserComponent,
   },
-  {
-    path: 'login',
-    component: UserComponent,
-  },
+
   {
     path: 'task/:id',
     component: TaskComponent,
