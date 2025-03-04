@@ -10,6 +10,12 @@ import { TaskService } from '../../services/task.service';
       taskItem().title
     }}</span>
     <span class="flex gap-2">
+      <button
+        class="p-2 bg-yellow-400 text-white shadow-md rounded-md"
+        (click)="modify()"
+      >
+        Update
+      </button>
       <button class="p-2 bg-red-500  shadow-md rounded-md" (click)="delete()">
         Delete
       </button>
@@ -28,6 +34,7 @@ export class TaskCardComponent {
   taskItem = input.required<Task>();
   itemDeleted = output<string>();
   itemUpdated = output<string>();
+  itemModified = output<string>();
   taskService = inject(TaskService);
   taskId: any;
 
@@ -48,5 +55,8 @@ export class TaskCardComponent {
     this.taskService.updateTask(this.taskItem(), this.taskId).subscribe(() => {
       this.itemUpdated.emit(this.taskId);
     });
+  }
+  modify() {
+    this.itemModified.emit(this.taskId);
   }
 }

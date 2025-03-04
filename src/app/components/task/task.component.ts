@@ -53,6 +53,7 @@ import { TaskCardComponent } from '../task-card/task-card.component';
         class="bg-slate-100 shadow-md p-3 w-full mx-auto mt-8 items-center justify-between gap-2"
         [taskItem]="task"
         (itemDeleted)="deleteTask($event)"
+        (itemModified)="modifyTask($event)"
       />
       }}
     </div>
@@ -90,5 +91,11 @@ export class TaskComponent {
     this.tasks.set(
       this.tasks().filter((task) => task.id?.toString() !== taskId)
     );
+  }
+
+  modifyTask(taskId: string) {
+    this.taskService.updateTask(this.newTask(), taskId).subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }
