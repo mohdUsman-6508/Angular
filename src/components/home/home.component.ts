@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { HousingLocationComponent } from "./housinglocation/housinglocation.component";
 import { Housinglocation } from "src/interfaces/housinglocation";
+import { HousingService } from "src/services/housing.service";
 
 @Component({
   selector: "app-home",
@@ -11,22 +12,20 @@ import { Housinglocation } from "src/interfaces/housinglocation";
       <button class="primary" type="button">Search</button>
     </form>
     <section class="results">
-      <app-housingLocation></app-housingLocation>
+      @for (housinglocation of housingLocationList; track housinglocation.id) {
+      <app-housingLocation
+        [housingLocation]="housinglocation"
+      ></app-housingLocation>
+      }
     </section>
   </section> `,
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent {
-  readonly baseUrl = "https://angular.dev/assets/images/tutorials/common";
+  housingService = inject(HousingService);
+  housingLocationList: Housinglocation[] = [];
 
-  housingLocation: Housinglocation = {
-    id: 9999,
-    name: "Test Home",
-    city: "Test city",
-    state: "ST",
-    photo: `${this.baseUrl}/example-house.jpg`,
-    availableUnits: 99,
-    wifi: true,
-    laundry: false,
-  };
+  constructor() {
+    this.housingLocationList = this.housingService.getAllHousingLocations();
+  }
 }
